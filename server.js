@@ -1,8 +1,9 @@
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
-
+const middlewares = jsonServer.defaults({
+  static: null // ⛔ disables static file serving (avoids the public folder issue)
+});
 // ✅ Allow all CORS requests
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // allow all domains
